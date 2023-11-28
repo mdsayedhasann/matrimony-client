@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Avatar, Dropdown, Navbar } from "flowbite-react";
 import logo from '../../assets/images/logo.png'
+import { AuthContext } from "../../Provider/AuthProvider/AuthProvider";
 
 const Nav = () => {
+  const {a} = useContext(AuthContext)
   return (
     <div>
       <Navbar className="max-w-7xl mx-auto">
@@ -46,7 +48,7 @@ const Nav = () => {
           <Navbar.Link href="#">Biodatas</Navbar.Link>
           <Navbar.Link href="#">About Us</Navbar.Link>
           <Navbar.Link href="#">Contact Us </Navbar.Link>
-          <Navbar.Link href="#">Login</Navbar.Link>
+          <Navbar.Link href="/login">Login</Navbar.Link>
         </Navbar.Collapse>
       </Navbar>
     </div>
