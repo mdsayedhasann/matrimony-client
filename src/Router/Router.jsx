@@ -4,6 +4,7 @@ import {
   } from "react-router-dom";
 import Main from '../pages/Main';
 import Checking from '../shared/Checking/Checking';
+import Home from '../pages/Home/Home';
 
   export const Router = createBrowserRouter([
     {
@@ -11,8 +12,8 @@ import Checking from '../shared/Checking/Checking';
       element: <Main></Main>,
       children: [
         {
-            path: 'checking',
-            element: <Checking></Checking>
+            path: '/',
+            element: <Home></Home>
         }
       ]
     },

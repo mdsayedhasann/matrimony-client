@@ -5,7 +5,7 @@ import logo from '../../assets/images/logo.png'
 const Nav = () => {
   return (
     <div>
-      <Navbar className="">
+      <Navbar className="max-w-7xl mx-auto">
         <Navbar.Brand href="/">
           <img
             src={logo}
