@@ -9,6 +9,9 @@ import Register from '../pages/Register/Register';
 import Login from '../pages/Login/Login';
 import PrivateRouter from './PrivateRouter';
 import BioData from '../pages/BioData/BioData';
+import AddBiodata from '../pages/AddBiodata/AddBiodata';
+import Dashboard from '../Dashboard/Dashboard';
+import DashboardHome from '../Dashboard/DashboardHome';
 
   export const Router = createBrowserRouter([
     {
@@ -34,9 +37,24 @@ import BioData from '../pages/BioData/BioData';
         {
           path: '/biodata',
           element: <BioData></BioData>
-        }
+        },
+        
       ]
     },
+    {
+      path: '/dashboard',
+      element: <Dashboard></Dashboard>,
+      children: [
+        {
+          path: '/dashboard',
+          element: <DashboardHome></DashboardHome>
+        },
+        {
+          path: 'addbiodata',
+          element: <AddBiodata></AddBiodata>
+        }
+      ]
+    }
    
   ]);
 
