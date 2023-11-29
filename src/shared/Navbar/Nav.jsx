@@ -2,9 +2,25 @@ import React, { useContext } from "react";
 import { Avatar, Dropdown, Navbar } from "flowbite-react";
 import logo from '../../assets/images/logo.png'
 import { AuthContext } from "../../Provider/AuthProvider/AuthProvider";
+import Swal from 'sweetalert2'
 
 const Nav = () => {
-  const {a} = useContext(AuthContext)
+  const {user, signoutUser} = useContext(AuthContext)
+
+  const handleSignOut = () => {
+    signoutUser()
+    .then(() => {
+      Swal.fire({
+        icon: "success",
+        title: "Logout Success",
+        showConfirmButton: false,
+        timer: 1500
+      })
+    })
+    .catch(error => {
+      console.error(error);
+    })
+  }
   return (
     <div>
       <Navbar className="max-w-7xl mx-auto">
@@ -15,32 +31,34 @@ const Nav = () => {
             alt="Flowbite React Logo"
           />
         </Navbar.Brand>
-        <div className="flex md:order-2">
+        {user && <>
+          <div className="flex md:order-2">
           <Dropdown
             arrowIcon={false}
             inline
             label={
               <Avatar
                 alt="User settings"
-                img="https://flowbite.com/docs/images/people/profile-picture-5.jpg"
+                img={user?.photoURL}
                 rounded
               />
             }
           >
             <Dropdown.Header>
-              <span className="block text-sm">Bonnie Green</span>
+              <span className="block text-sm">{user?.displayName}</span>
               <span className="block truncate text-sm font-medium">
-                name@flowbite.com
+                {user?.email}
               </span>
             </Dropdown.Header>
             <Dropdown.Item>Dashboard</Dropdown.Item>
             <Dropdown.Item>Settings</Dropdown.Item>
             <Dropdown.Item>Earnings</Dropdown.Item>
             <Dropdown.Divider />
-            <Dropdown.Item>Sign out</Dropdown.Item>
+            <Dropdown.Item onClick={handleSignOut}>Sign out</Dropdown.Item>
           </Dropdown>
           <Navbar.Toggle />
         </div>
+        </>}
         <Navbar.Collapse>
           <Navbar.Link href="/" active>
             Home

@@ -2,36 +2,51 @@ import React, { useContext } from "react";
 import { Button, Checkbox, Label, TextInput } from "flowbite-react";
 import { useForm } from "react-hook-form";
 import { AuthContext } from "../../Provider/AuthProvider/AuthProvider";
-import Swal from 'sweetalert2'
+import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
 
-
 const Register = () => {
-   const { user, createAccount } = useContext(AuthContext);
+  const { user, createAccount, updateUser } = useContext(AuthContext);
 
-  
   const {
-    register, handleSubmit,
+    register,
+    handleSubmit,
     // eslint-disable-next-line no-unused-vars
     formState: { errors },
-    reset
+    reset,
   } = useForm();
   const handleRegister = (data) => {
-      console.log(data)
-        createAccount(data.email, data.password)
-        .then(res => {
-            reset()
-            // Sweet Alert Start
-            Swal.fire({
-                icon: "success",
-                title: `Hi! ${data.name}, Warmly welcome to our Matrimoni`,
-                showConfirmButton: false,
-              });
-            // Sweet Alert End
-            console.log(res)
+    console.log(data);
+    createAccount(data.email, data.password)
+      .then((res) => {
+        // Update Name and Photo
+        updateUser(data.name, data.photoURL)
+        .then(() => {
+          Swal.fire({
+            icon: "success",
+            title: `Hi!, Warmly welcome to our Matrimoni`,
+            showConfirmButton: false,
+          });
+
+          // Form field reset
+          reset();
+          // Sweet Alert End
+          console.log(res);
         })
+
+
+        Swal.fire({
+            icon: "success",
+            title: `Hi!, Warmly welcome to our Matrimoni`,
+            showConfirmButton: false,
+          })
+
         .catch(error => console.error(error))
-}
+      })
+      .catch((error) => {
+        console.error(error)
+      })
+  };
   return (
     <div>
       <div>
@@ -45,7 +60,7 @@ const Register = () => {
               <Label value="Your Name" />
             </div>
             <TextInput
-             {...register("name", { required: true })} 
+              {...register("name", { required: true })}
               name="name"
               type="text"
               placeholder="Enter Your Name"
@@ -59,7 +74,7 @@ const Register = () => {
               <Label value="Your email" />
             </div>
             <TextInput
-              {...register("email", { required: true })} 
+              {...register("email", { required: true })}
               name="email"
               type="email"
               placeholder="Enter Your Email"
@@ -73,7 +88,7 @@ const Register = () => {
               <Label value="Your Photo" />
             </div>
             <TextInput
-              {...register("photoURL", { required: true })} 
+              {...register("photoURL", { required: true })}
               type="text"
               name="photoURL"
               placeholder="Enter Your Photo Url"
@@ -87,7 +102,7 @@ const Register = () => {
               <Label value="Your password" />
             </div>
             <TextInput
-              {...register("password", { required: true })} 
+              {...register("password", { required: true })}
               type="password"
               name="password"
               placeholder="Type Password Here"
@@ -99,10 +114,13 @@ const Register = () => {
         </form>
 
         <div className="my-2">
-           <p className="">
-           Already have an account? 
-           <Link to={'/login'}> <span className="text-[#DF0C44]">Please Login </span>  </Link>
-           </p>
+          <p className="">
+            Already have an account?
+            <Link to={"/login"}>
+              {" "}
+              <span className="text-[#DF0C44]">Please Login </span>{" "}
+            </Link>
+          </p>
         </div>
       </div>
       <div></div>
