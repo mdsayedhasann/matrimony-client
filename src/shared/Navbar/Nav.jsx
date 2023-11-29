@@ -63,10 +63,14 @@ const Nav = () => {
           <Navbar.Link href="/" active>
             Home
           </Navbar.Link>
-          <Navbar.Link href="#">Biodatas</Navbar.Link>
+          <Navbar.Link href="/checking">Checking</Navbar.Link>
+          <Navbar.Link href="/biodata">Biodatas</Navbar.Link>
           <Navbar.Link href="#">About Us</Navbar.Link>
           <Navbar.Link href="#">Contact Us </Navbar.Link>
-          <Navbar.Link href="/login">Login</Navbar.Link>
+          {
+            !user && <Navbar.Link href="/login">Login</Navbar.Link>
+          }
+
         </Navbar.Collapse>
       </Navbar>
     </div>
