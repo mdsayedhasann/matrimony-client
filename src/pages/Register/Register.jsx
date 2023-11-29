@@ -3,6 +3,7 @@ import { Button, Checkbox, Label, TextInput } from "flowbite-react";
 import { useForm } from "react-hook-form";
 import { AuthContext } from "../../Provider/AuthProvider/AuthProvider";
 import Swal from 'sweetalert2'
+import { Link } from "react-router-dom";
 
 
 const Register = () => {
@@ -96,6 +97,13 @@ const Register = () => {
 
           <TextInput type="submit" value="Register" className="bg-red-500" />
         </form>
+
+        <div className="my-2">
+           <p className="">
+           Already have an account? 
+           <Link to={'/login'}> <span className="text-[#DF0C44]">Please Login </span>  </Link>
+           </p>
+        </div>
       </div>
       <div></div>
     </div>

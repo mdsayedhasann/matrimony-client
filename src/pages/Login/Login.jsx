@@ -1,5 +1,6 @@
 import React from 'react';
 import { Button, Checkbox, Label, TextInput } from "flowbite-react";
+import { Link } from 'react-router-dom';
 
 const Login = () => {
     return (
@@ -29,6 +30,12 @@ const Login = () => {
         </div>
         <Button type="submit">Submit</Button>
       </form>
+      <div className="my-2">
+           <p className="">
+           Already have an account? 
+           <Link to={'/register'}> <span className="text-[#DF0C44]">Please Login </span>  </Link>
+           </p>
+        </div>
       </div>
       <div>
 
