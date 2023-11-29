@@ -3,12 +3,46 @@ import { Button, Checkbox, Label, TextInput, Select, FileInput } from "flowbite-
 import SectionHeading from "../../shared/SectionHeading/SectionHeading";
 import { AuthContext } from "../../Provider/AuthProvider/AuthProvider";
 import { useForm } from "react-hook-form";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
+import Swal from 'sweetalert2'
 
 const AddBiodata = () => {
   const { user } = useContext(AuthContext);
-  const { register, handleSubmit } = useForm();
-  const onSubmit = (data) =>{
+  const axiosSecure = useAxiosSecure()
+  const { register, handleSubmit, reset } = useForm();
+
+    const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY
+    const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`
+  const onSubmit = async (data) =>{
        console.log(data)
+       const imageFile = {image: data.image[0]}
+       const res = await axiosSecure.post(image_hosting_api, imageFile, {
+           headers: {
+               'Content-type' : 'multipart/form-data'
+           }
+       })
+       if(res.data.success){
+           const bioData = {
+               name: data.name,
+               gender: data.gender,
+               address: data.address,
+               age: parseFloat(data.age),
+               occupation: data.occupation,
+                image: res.data.data.displayURL
+           }
+           const biores = await axiosSecure.post('/bioData', bioData)
+           if(biores.data.insertedId){
+               reset()
+            Swal.fire({
+                position: "top-end",
+                icon: "success",
+                title: "Your work has been saved",
+                showConfirmButton: false,
+                timer: 1500
+              });
+           }
+       }
+       console.log(res.data);
     }
   return (
     <div className="">
