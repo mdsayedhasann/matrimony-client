@@ -2,9 +2,41 @@ import React from "react";
 import { Table } from "flowbite-react";
 import SectionHeading from "../shared/SectionHeading/SectionHeading";
 import useBioData from "../hooks/useBioData";
+import { FaPencil, FaTrashCan } from "react-icons/fa6";
+import useAxiosSecure from "../hooks/useAxiosSecure";
+import Swal from "sweetalert2";
 
 const ActionBioData = () => {
-  const [bioData] = useBioData();
+  const [bioData, refetch] = useBioData();
+  const axiosSecure = useAxiosSecure();
+
+  const handleDelete = (item) => {
+    //
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+
+        const res = await axiosSecure.delete(`/bioData/${item._id}`);
+             
+        if(res.item.deletedCount) {
+          Swal.fire({
+            title: "Deleted!",
+            text: "Your file has been deleted.",
+            icon: "success",
+          });
+          refetch() 
+        }
+        
+      }
+    });
+  };
   // const
   return (
     <div>
@@ -20,6 +52,8 @@ const ActionBioData = () => {
               <Table.HeadCell>Gender</Table.HeadCell>
               <Table.HeadCell>Age</Table.HeadCell>
               <Table.HeadCell>Occupation</Table.HeadCell>
+              <Table.HeadCell>Email</Table.HeadCell>
+              <Table.HeadCell>Phone</Table.HeadCell>
               <Table.HeadCell>Status</Table.HeadCell>
               <Table.HeadCell>Action</Table.HeadCell>
               <Table.HeadCell>
@@ -39,45 +73,39 @@ const ActionBioData = () => {
                   <Table.Cell>{bio.gender}</Table.Cell>
                   <Table.Cell>{bio.age}</Table.Cell>
                   <Table.Cell>{bio.occupation}</Table.Cell>
+                  <Table.Cell>{bio.email}</Table.Cell>
+                  <Table.Cell>{bio.phone}</Table.Cell>
 
                   <Table.Cell>
                     {bio.status === "pending" ? (
                       <>
-                        <p className="bg-orange-400 text-center p-[1px] text-white font-bold"> {bio.status} </p>{" "}
+                        <p className="bg-orange-200 text-center p-[1px] text-black font-bold">
+                          {" "}
+                          {bio.status}{" "}
+                        </p>{" "}
                       </>
-                    ) : (
+                    ) : bio.status === "success" ? (
                       <>
-                        <p className="bg-green-400 text-center p-[1px] text-white font-bold"> {bio.status} </p>{" "}
+                        <p className="bg-green-200 text-center p-[1px] text-black font-bold">
+                          {" "}
+                          {bio.status}{" "}
+                        </p>{" "}
                       </>
-                    )}
+                    ) : null}
                   </Table.Cell>
                   <Table.Cell>
-                    <button className="bg-blue-600 p-2 m-2 text-white">
-                      Update
+                    <button className="bg-blue-600 p-2 m-2 rounded rounded-md text-white">
+                      <FaPencil />
                     </button>
-                    <button className="bg-red-600 p-2 m-2 text-white">
-                      Delete
+                    <button
+                      onClick={() => handleDelete(bio)}
+                      className="bg-red-600 p-2 m-2  rounded rounded-md text-white"
+                    >
+                      <FaTrashCan />
                     </button>
                   </Table.Cell>
                 </Table.Row>
               ))}
-
-              <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800">
-                <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
-                  {'Apple MacBook Pro 17"'}
-                </Table.Cell>
-                <Table.Cell>Sliver</Table.Cell>
-                <Table.Cell>Laptop</Table.Cell>
-                <Table.Cell>$2999</Table.Cell>
-                <Table.Cell>
-                  <a
-                    href="#"
-                    className="font-medium text-cyan-600 hover:underline dark:text-cyan-500"
-                  >
-                    Edit
-                  </a>
-                </Table.Cell>
-              </Table.Row>
             </Table.Body>
           </Table>
         </div>
