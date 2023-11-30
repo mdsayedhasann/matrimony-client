@@ -13,7 +13,10 @@ import AddBiodata from '../pages/AddBiodata/AddBiodata';
 import Dashboard from '../Dashboard/Dashboard';
 import DashboardHome from '../Dashboard/DashboardHome';
 import ActionBioData from '../Dashboard/ActionBioData';
+import BioProfile from '../pages/BioProfile/BioProfile';
+import useAxiosSecure from '../hooks/useAxiosSecure';
 
+const axiosSecure = useAxiosSecure()
   export const Router = createBrowserRouter([
     {
       path: "/",
@@ -39,6 +42,11 @@ import ActionBioData from '../Dashboard/ActionBioData';
           path: '/biodata',
           element: <BioData></BioData>
         },
+        {
+          path: '/profile/:id',
+          element: <BioProfile></BioProfile>,
+          loader: ({params}) => fetch(`http://localhost:3000/bioData/${params.id}`)
+        }
         
       ]
     },

@@ -189,7 +189,7 @@ const AddBiodata = () => {
             {/* Weight Start */}
             <div className="w-1/2">
               <div className="mb-2 block">
-                <Label value="Weight (in cm)" />
+                <Label value="Weight (in kg)" />
               </div>
               <TextInput
                 {...register("weight")}
