@@ -28,15 +28,17 @@ const AddBiodata = () => {
                address: data.address,
                age: parseFloat(data.age),
                occupation: data.occupation,
-                image: res.data.data.displayURL
+                height: parseFloat(data.height),
+                weight: parseFloat(data.weight),
+                image: res.data.data.displayURL,
+                status: 'pending'
            }
            const biores = await axiosSecure.post('/bioData', bioData)
            if(biores.data.insertedId){
                reset()
             Swal.fire({
-                position: "top-end",
                 icon: "success",
-                title: "Your work has been saved",
+                title: "Bio Data Added Successfully",
                 showConfirmButton: false,
                 timer: 1500
               });
@@ -133,11 +135,53 @@ const AddBiodata = () => {
                 required
               />
             </div>
-
             {/* Occupation End */}
           </div>
 
-          {/* Occupation Start */}
+
+
+
+          <div className="flex space-x-2">
+            {/* Height Start */}
+            <div className="w-1/2">
+              <div className="mb-2 block">
+                <Label value="Height (in cm)" />
+              </div>
+              <TextInput
+                {...register("height")}
+                name="height"
+                type="number"
+                placeholder=""
+                required
+              />
+            </div>
+
+            {/* Height End */}
+
+            {/* Weight Start */}
+            <div className="w-1/2">
+              <div className="mb-2 block">
+                <Label value="Weight (in cm)" />
+              </div>
+              <TextInput
+                {...register("weight")}
+                name="weight"
+                type="number"
+                placeholder=""
+                required
+              />
+            </div>
+            {/* Weight End */}
+          </div>
+
+
+
+
+
+
+
+
+          {/* Image Start */}
           <div>
             <div>
               <div className="mb-2 block">
@@ -147,7 +191,7 @@ const AddBiodata = () => {
             </div>
           </div>
 
-          {/* Occupation End */}
+          {/* Image End */}
 
           <Button type="submit">Submit</Button>
         </form>

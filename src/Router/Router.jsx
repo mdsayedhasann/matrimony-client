@@ -12,6 +12,7 @@ import BioData from '../pages/BioData/BioData';
 import AddBiodata from '../pages/AddBiodata/AddBiodata';
 import Dashboard from '../Dashboard/Dashboard';
 import DashboardHome from '../Dashboard/DashboardHome';
+import ActionBioData from '../Dashboard/ActionBioData';
 
   export const Router = createBrowserRouter([
     {
@@ -52,6 +53,10 @@ import DashboardHome from '../Dashboard/DashboardHome';
         {
           path: 'addbiodata',
           element: <AddBiodata></AddBiodata>
+        },
+        {
+          path: 'actionbiodata',
+          element: <ActionBioData></ActionBioData>
         }
       ]
     }

@@ -29,8 +29,8 @@ const DashboardSidebar = () => {
             <Sidebar.Item href="/dashboard/addbiodata" icon={HiViewBoards}>
               Add Bio Data
             </Sidebar.Item>
-            <Sidebar.Item href="#" icon={HiInbox}>
-              Inbox
+            <Sidebar.Item href="/dashboard/actionbiodata" icon={HiInbox}>
+              Viwe Bios
             </Sidebar.Item>
             <Sidebar.Item href="#" icon={HiUser}>
               Users
@@ -38,10 +38,7 @@ const DashboardSidebar = () => {
             <Sidebar.Item href="#" icon={HiShoppingBag}>
               Products
             </Sidebar.Item>
-            <Sidebar.Item href="#" icon={HiArrowSmRight}>
-              Sign In
-            </Sidebar.Item>
-            <Sidebar.Item href="#" icon={HiTable}>
+            <Sidebar.Item href="/register" icon={HiTable}>
               Sign Up
             </Sidebar.Item>
           </Sidebar.ItemGroup>
