@@ -5,7 +5,7 @@ import useAxiosSecure from './useAxiosSecure';
 const useReceivedRequest = () => {
     const axiosSecure = useAxiosSecure()
 
-    const {data: receivedRequest = []} = useQuery({
+    const {data: receivedRequest = [], refetch} = useQuery({
         queryKey: ['receivedRequest'],
         queryFn: async() => {
             const res = await axiosSecure.get('/request')
@@ -13,7 +13,7 @@ const useReceivedRequest = () => {
         }
     })
     return (
-        [receivedRequest]
+        [receivedRequest, refetch]
     )
 };
 

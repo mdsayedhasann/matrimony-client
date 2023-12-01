@@ -23,17 +23,13 @@ const ActionBioData = () => {
     }).then(async (result) => {
       if (result.isConfirmed) {
 
-        const res = await axiosSecure.delete(`/bioData/${item._id}`);
-             
-        if(res.item.deletedCount) {
+        await axiosSecure.delete(`/bioData/${item._id}`);
+        refetch() 
           Swal.fire({
             title: "Deleted!",
             text: "Your file has been deleted.",
             icon: "success",
           });
-          refetch() 
-        }
-        
       }
     });
   };
