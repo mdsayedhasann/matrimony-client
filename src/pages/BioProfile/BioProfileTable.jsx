@@ -3,6 +3,7 @@ import { Table } from "flowbite-react";
 import { Dropdown } from "flowbite-react";
 import { HiCog, HiCurrencyDollar, HiLogout, HiViewGrid } from "react-icons/hi";
 import { Button, Checkbox, Label, TextInput } from 'flowbite-react';
+import RequestForm from "./RequestForm";
 
 
 const BioProfileTable = ({ bio }) => {
@@ -120,25 +121,7 @@ const BioProfileTable = ({ bio }) => {
       {/* Request Form Start */}
       <div className="my-5 mx-2">
         <Dropdown label="Contact" placement="right" className="w-[400px] px-10 py-10">
-        <form className="flex max-w-md flex-col gap-4">
-      <div>
-        <div className="mb-2 block">
-          <Label htmlFor="email1" value="Your email" />
-        </div>
-        <TextInput id="email1" type="email" placeholder="name@flowbite.com" required />
-      </div>
-      <div>
-        <div className="mb-2 block">
-          <Label htmlFor="password1" value="Your password" />
-        </div>
-        <TextInput id="password1" type="password" required />
-      </div>
-      <div className="flex items-center gap-2">
-        <Checkbox id="remember" />
-        <Label htmlFor="remember">Remember me</Label>
-      </div>
-      <Button type="submit">Submit</Button>
-    </form>
+        <RequestForm bio={bio}></RequestForm>
         </Dropdown>
       </div>
       {/* Request Form End */}

@@ -3,6 +3,7 @@ import { useLoaderData } from "react-router-dom";
 import img1 from '../../assets/images/slider/s1.png'
 import { Table } from 'flowbite-react';
 import BioProfileTable from "./BioProfileTable";
+import BioProfileSidebar from "./BioProfileSidebar";
 const BioProfile = () => {
   const bio = useLoaderData();
   const {
@@ -26,7 +27,7 @@ const BioProfile = () => {
     isPremium,
   } = bio;
   return (
-    <div className="flex">
+    <div className="flex gap-8">
       {/* Content Area Start */}
       <div className="col-span-8 w-full md:w-3/4 ">
           <img className="w-full" src={img1} alt="" />
@@ -40,20 +41,7 @@ const BioProfile = () => {
 
       {/* Sidebar Area Start */}
       <div className="col-span-4 w-full md:w-1/4">
-          <ul>
-              <li>Hello </li>
-              <li>Hello </li>
-              <li>Hello </li>
-              <li>Hello </li>
-              <li>Hello </li>
-              <li>Hello </li>
-              <li>Hello </li>
-              <li>Hello </li>
-              <li>Hello </li>
-              <li>Hello </li>
-              <li>Hello </li>
-              <li>Hello </li>
-          </ul>
+          <BioProfileSidebar></BioProfileSidebar>
       </div>
       {/* Sidebar Area End */}
     </div>

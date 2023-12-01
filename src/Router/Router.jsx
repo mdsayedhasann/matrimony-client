@@ -15,8 +15,9 @@ import DashboardHome from '../Dashboard/DashboardHome';
 import ActionBioData from '../Dashboard/ActionBioData';
 import BioProfile from '../pages/BioProfile/BioProfile';
 import useAxiosSecure from '../hooks/useAxiosSecure';
+import AboutUs from '../pages/AboutUs/AboutUs';
+import ReceiveRequest from '../Dashboard/ReceiveRequest/ReceiveRequest';
 
-const axiosSecure = useAxiosSecure()
   export const Router = createBrowserRouter([
     {
       path: "/",
@@ -46,6 +47,14 @@ const axiosSecure = useAxiosSecure()
           path: '/profile/:id',
           element: <BioProfile></BioProfile>,
           loader: ({params}) => fetch(`http://localhost:3000/bioData/${params.id}`)
+        },
+        {
+          path: 'aboutus',
+          element: <AboutUs></AboutUs>
+        },
+        {
+          path: 'receive_request',
+          element: <ReceiveRequest></ReceiveRequest>
         }
         
       ]

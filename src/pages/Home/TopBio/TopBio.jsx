@@ -10,7 +10,7 @@ const TopBio = ({bio}) => {
           <img
             alt="Bonnie image"
             height="96"
-            src={image}
+            src='https://i.ibb.co/JqdkRRW/image.png'
             width="96"
             className="mb-3 rounded-full shadow-lg"
           />

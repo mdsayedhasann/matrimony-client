@@ -65,7 +65,7 @@ const Nav = () => {
           </Navbar.Link>
           <Navbar.Link href="/checking">Checking</Navbar.Link>
           <Navbar.Link href="/biodata">Biodatas</Navbar.Link>
-          <Navbar.Link href="#">About Us</Navbar.Link>
+          <Navbar.Link href="/aboutus">About Us</Navbar.Link>
           <Navbar.Link href="#">Contact Us </Navbar.Link>
           {
             !user && <Navbar.Link href="/login">Login</Navbar.Link>

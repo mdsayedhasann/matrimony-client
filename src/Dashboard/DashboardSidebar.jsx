@@ -32,6 +32,9 @@ const DashboardSidebar = () => {
             <Sidebar.Item href="/dashboard/actionbiodata" icon={HiInbox}>
               Viwe Bios
             </Sidebar.Item>
+            <Sidebar.Item href="/dashboard/receive_request" icon={HiInbox}>
+              My Received Request
+            </Sidebar.Item>
             <Sidebar.Item href="#" icon={HiUser}>
               Users
             </Sidebar.Item>
