@@ -18,10 +18,11 @@ const RequestForm = ({ bio }) => {
   const onSubmit = async (data) => {
     console.log(data)
     const requestItems = {
+        senderName: data.senderName,
         senderEmail: data.sender_email,
         sender_profile: data.sender_profile,
         message: data.message,
-        receiver_email: data.email
+        receiver_email: email
     }
 
     const requestres = await axiosSecure.post('/request', requestItems)
@@ -38,6 +39,18 @@ const RequestForm = ({ bio }) => {
     <div>
       <form onSubmit={handleSubmit(onSubmit)} className="flex max-w-md flex-col gap-4">
         {/* From Email */}
+        <div>
+          <div className="mb-2 block">
+            <Label value="Your Name" />
+          </div>
+          <TextInput
+          {...register("senderName", { required: true })}
+          defaultValue={user.displayName || ''}
+            name="senderName"
+            type="text"
+            placeholder='Enter Your Email Address'
+          />
+        </div>
         <div>
           <div className="mb-2 block">
             <Label value="Your email" />

@@ -52,10 +52,7 @@ import ReceiveRequest from '../Dashboard/ReceiveRequest/ReceiveRequest';
           path: 'aboutus',
           element: <AboutUs></AboutUs>
         },
-        {
-          path: 'receive_request',
-          element: <ReceiveRequest></ReceiveRequest>
-        }
+        
         
       ]
     },
@@ -74,6 +71,10 @@ import ReceiveRequest from '../Dashboard/ReceiveRequest/ReceiveRequest';
         {
           path: 'actionbiodata',
           element: <ActionBioData></ActionBioData>
+        },
+        {
+          path: 'receive_request',
+          element: <ReceiveRequest></ReceiveRequest>
         }
       ]
     }
