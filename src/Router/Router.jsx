@@ -46,7 +46,7 @@ import ReceiveRequest from '../Dashboard/ReceiveRequest/ReceiveRequest';
         {
           path: '/profile/:id',
           element: <BioProfile></BioProfile>,
-          loader: ({params}) => fetch(`http://localhost:3000/bioData/${params.id}`)
+          loader: ({params}) => fetch(` https://matrimony-server-three.vercel.app/bioData/${params.id}`)
         },
         {
           path: 'aboutus',

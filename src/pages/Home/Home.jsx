@@ -8,7 +8,7 @@ const Home = () => {
       <Banner></Banner>
 
       <div className="my-16">
-        <HomePageBioDataSection></HomePageBioDataSection>
+        <HomePageBioDataSection preview></HomePageBioDataSection>
       </div>
     </div>
   );

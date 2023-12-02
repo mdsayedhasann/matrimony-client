@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios'
 const axiosSecure = axios.create({
-    baseURL: 'http://localhost:3000/'
+    baseURL: ' https://matrimony-server-three.vercel.app//'
   });
 const useAxiosSecure = () => {
     return axiosSecure

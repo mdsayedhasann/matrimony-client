@@ -22,7 +22,8 @@ const RequestForm = ({ bio }) => {
         senderEmail: data.sender_email,
         sender_profile: data.sender_profile,
         message: data.message,
-        receiver_email: email
+        receiver_email: email,
+        isApproved: false
     }
 
     const requestres = await axiosSecure.post('/request', requestItems)

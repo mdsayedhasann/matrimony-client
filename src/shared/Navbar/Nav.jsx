@@ -51,8 +51,8 @@ const Nav = () => {
               </span>
             </Dropdown.Header>
             <Dropdown.Item href="/dashboard">Dashboard</Dropdown.Item>
-            <Dropdown.Item>Settings</Dropdown.Item>
-            <Dropdown.Item>Earnings</Dropdown.Item>
+            <Dropdown.Item href="/dashboard/addbiodata">Add My Bio Data</Dropdown.Item>
+            <Dropdown.Item href="/dashboard/actionbiodata">My Received Bio Data</Dropdown.Item>
             <Dropdown.Divider />
             <Dropdown.Item onClick={handleSignOut}>Sign out</Dropdown.Item>
           </Dropdown>

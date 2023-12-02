@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 
 const SidebarCard = ({ bio }) => {
-  const { _id, name, gender, age, occupation, status, isPremium } = bio;
+  const { _id, name, gender, age, occupation, status, isPremium, image } = bio;
   return (
     <div className=" rounded-3xl bg-gradient-to-br from-gray-100 to-gray-50 my-3 p-4">
 
@@ -16,7 +16,7 @@ const SidebarCard = ({ bio }) => {
         </div>
       <div className="flex items-center p-3  gap-5">
           <div className="w-1/3">
-              <img src="https://i.ibb.co/JqdkRRW/image.png" alt="" />
+              <img src={image} alt="" />
           </div>
 
           <div className="flex gap-3 flex-1">

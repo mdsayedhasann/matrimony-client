@@ -3,11 +3,11 @@ import { Button, Checkbox, Label, TextInput } from "flowbite-react";
 import { useForm } from "react-hook-form";
 import { AuthContext } from "../../Provider/AuthProvider/AuthProvider";
 import Swal from "sweetalert2";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Register = () => {
   const { user, createAccount, updateUser } = useContext(AuthContext);
-
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -20,32 +20,22 @@ const Register = () => {
     createAccount(data.email, data.password)
       .then((res) => {
         // Update Name and Photo
-        updateUser(data.name, data.photoURL)
-        .then(() => {
-          Swal.fire({
-            icon: "success",
-            title: `Hi!, Warmly welcome to our Matrimoni`,
-            showConfirmButton: false,
-          });
-
-          // Form field reset
-          reset();
-          // Sweet Alert End
-          console.log(res);
-        })
-
-
-        Swal.fire({
-            icon: "success",
-            title: `Hi!, Warmly welcome to our Matrimoni`,
-            showConfirmButton: false,
+        updateUser(data.name, data.photoURL).then((res) => {
+          
+            Swal.fire({
+              icon: "success",
+              title: `Hi!, Warmly welcome to our Matrimoni`,
+              showConfirmButton: false,
+            });
+            navigate("/");
+            console.log(res);
           })
 
-        .catch(error => console.error(error))
+          .catch((error) => console.error(error));
       })
       .catch((error) => {
-        console.error(error)
-      })
+        console.error(error);
+      });
   };
   return (
     <div>
@@ -109,8 +99,7 @@ const Register = () => {
               required
             />
           </div>
-
-          <TextInput type="submit" value="Register" className="bg-red-500" />
+            <button className="bg-[#E00C44] py-2 text-white" type="submit">Register</button>
         </form>
 
         <div className="my-2">

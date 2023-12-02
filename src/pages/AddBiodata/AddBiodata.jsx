@@ -28,6 +28,7 @@ const AddBiodata = () => {
         "Content-type": "multipart/form-data",
       },
     });
+    console.log(res.data);
     if (res.data.success) {
       const bioData = {
         name: data.name,
@@ -42,13 +43,13 @@ const AddBiodata = () => {
         phone: data.phone,
         father: data.father,
         mother: data.mother,
-        image: res.data.data.displayURL,
+        image: res.data.data.display_url,
         expected_age: data.expected_age,
-        expected_height: parseFloat(data.expected_height) ,
+        expected_height: parseFloat(data.expected_height),
         expected_weight: parseFloat(data.expected_weight),
         status: "pending",
         isAdmin: false,
-        isPremium: false
+        isPremium: false,
       };
       const biores = await axiosSecure.post("/bioData", bioData);
       if (biores.data.insertedId) {
@@ -285,12 +286,10 @@ const AddBiodata = () => {
 
           {/* Expected Partner Info */}
 
-          <SectionHeading heading={'Expected Partner Details'}>
+          <SectionHeading heading={"Expected Partner Details"}></SectionHeading>
 
-          </SectionHeading>
-
-        {/* Expected Partner Age */}
-        <div className="flex space-x-2">
+          {/* Expected Partner Age */}
+          <div className="flex space-x-2">
             {/* Expected Partner Age */}
             <div className="w-1/2">
               <div className="mb-2 block">
@@ -319,7 +318,6 @@ const AddBiodata = () => {
               />
             </div>
 
-
             {/* Expected Partner Weight */}
             <div className="w-1/2">
               <div className="mb-2 block">
@@ -333,10 +331,7 @@ const AddBiodata = () => {
                 required
               />
             </div>
-
           </div>
-
-
 
           <button className="bg-[#CB2752] py-2 text-white rounded rounded-lg">
             Save & Publish

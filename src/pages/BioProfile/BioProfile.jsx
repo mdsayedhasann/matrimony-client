@@ -9,6 +9,7 @@ const BioProfile = () => {
   const {
     _id,
     name,
+    image,
     gender,
     address,
     present_address,
@@ -30,7 +31,7 @@ const BioProfile = () => {
     <div className="flex gap-8">
       {/* Content Area Start */}
       <div className="col-span-8 w-full md:w-3/4 ">
-          <img className="w-full" src={img1} alt="" />
+          <img className="w-[95%] max-h-[500px]" src={image} alt="" />
           <h2 className="text-3xl font-bold my-3">
               Name: {name}
           </h2>

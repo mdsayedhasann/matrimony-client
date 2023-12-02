@@ -8,7 +8,7 @@ import useAxiosSecure from "../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
 const ReceiveRequest = () => {
   const axiosSecure = useAxiosSecure();
-  const [receivedRequest, refetch] = useReceivedRequest();
+  const [receivedRequest, ,refetch] = useReceivedRequest();
   const { user } = useContext(AuthContext);
 
   const handleDele = (item) => {
@@ -22,6 +22,7 @@ const ReceiveRequest = () => {
       cancelButtonColor: "#d33",
       confirmButtonText: "Yes, delete it!",
     }).then(async (result) => {
+        console.log(result)
       if (result.isConfirmed) {
         await axiosSecure.delete(`/request/${item._id}`);
         refetch()
@@ -33,6 +34,24 @@ const ReceiveRequest = () => {
       }
     });
   };
+
+
+  const handleApprove = (user) => {
+    console.log(user.senderName, 'is now approved');
+    axiosSecure.patch(`/request/approved/${user._id}`)
+    .then(res => {
+        if(res.data.modifiedCount > 0){
+            refetch()
+            Swal.fire({
+                title: "Hurray!",
+                text: `${user.senderName} is Approved as Your Lifepartner`,
+                icon: "success",
+                timer: 1500
+              });
+        }
+    })
+
+  }
   const my_received_request = receivedRequest.filter(
     (req) => req.receiver_email === user.email
   );
@@ -65,7 +84,7 @@ const ReceiveRequest = () => {
           </Table.HeadCell>
         </Table.Head>
 
-        {receivedRequest.map((req) => (
+        {my_received_request.map((req) => (
           <Table.Body key={req._id} className="divide-y">
             <Table.Cell> {req.senderName} </Table.Cell>
             <Table.Cell>{req.senderEmail}</Table.Cell>
@@ -81,9 +100,10 @@ const ReceiveRequest = () => {
 
             {/* Action  */}
             <Table.Cell>
-              <button className="bg-green-600 text-white px-3 py-2 ">
+              { req.isApproved === true ? <button disabled className="bg-green-950 text-white px-3 py-2 rounded rounded-lg">Selected</button> : <button onClick={() => handleApprove(req)} className="bg-green-600 text-white px-3 py-2 ">
                 Approve
               </button>
+            }
               <button
                 onClick={() => handleDele(req)}
                 className="bg-red-600 text-white px-3 py-2 mx-2"

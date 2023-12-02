@@ -5,16 +5,13 @@ import useAxiosSecure from './useAxiosSecure';
 const useReceivedRequest = () => {
     const axiosSecure = useAxiosSecure()
 
-    const {data: receivedRequest = [], refetch} = useQuery({
+    const {data: receivedRequest = [], isLoading: loading, refetch} = useQuery({
         queryKey: ['receivedRequest'],
         queryFn: async() => {
             const res = await axiosSecure.get('/request')
             return res.data
         }
     })
-    return (
-        [receivedRequest, refetch]
-    )
-};
-
+    return [receivedRequest, loading, refetch]
+}
 export default useReceivedRequest;

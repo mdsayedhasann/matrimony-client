@@ -7,7 +7,7 @@ import useAxiosSecure from "../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
 
 const ActionBioData = () => {
-  const [bioData, refetch] = useBioData();
+  const [bioData, , refetch] = useBioData();
   const axiosSecure = useAxiosSecure();
 
   const handleDelete = (item) => {
@@ -22,14 +22,13 @@ const ActionBioData = () => {
       confirmButtonText: "Yes, delete it!",
     }).then(async (result) => {
       if (result.isConfirmed) {
-
         await axiosSecure.delete(`/bioData/${item._id}`);
-        refetch() 
-          Swal.fire({
-            title: "Deleted!",
-            text: "Your file has been deleted.",
-            icon: "success",
-          });
+        refetch();
+        Swal.fire({
+          title: "Deleted!",
+          text: "Your file has been deleted.",
+          icon: "success",
+        });
       }
     });
   };
@@ -62,8 +61,10 @@ const ActionBioData = () => {
                   key={bio._id}
                   className="bg-white dark:border-gray-700 dark:bg-gray-800"
                 >
-                  <Table.Cell className="">
-                    <img src={bio.photoURL} alt="" />
+                  <Table.Cell>
+                    <div >
+                      <img className="rounded-lg" src={bio.image} alt="" />
+                    </div>
                   </Table.Cell>
                   <Table.Cell>{bio.name}</Table.Cell>
                   <Table.Cell>{bio.gender}</Table.Cell>

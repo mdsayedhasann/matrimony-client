@@ -8,11 +8,9 @@ const TopBio = ({bio}) => {
       <Card className="max-w-sm">
         <div className="flex flex-col items-center pb-10 w-full mx-auto">
           <img
-            alt="Bonnie image"
-            height="96"
-            src='https://i.ibb.co/JqdkRRW/image.png'
-            width="96"
-            className="mb-3 rounded-full shadow-lg"
+            alt={name}
+            src={image}
+            className="mb-3 rounded-full w-28 h-28 shadow-lg"
           />
           <h5 className="mb-1 text-xl font-medium text-gray-900 dark:text-white">
             {name}

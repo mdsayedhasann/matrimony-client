@@ -1,15 +1,15 @@
-import React from "react";
+/* eslint-disable react/prop-types */
+import React, { useState } from "react";
 import { Table } from "flowbite-react";
-import { Dropdown } from "flowbite-react";
-import { HiCog, HiCurrencyDollar, HiLogout, HiViewGrid } from "react-icons/hi";
-import { Button, Checkbox, Label, TextInput } from 'flowbite-react';
 import RequestForm from "./RequestForm";
+import { Button,  Modal } from "flowbite-react";
 
 
 const BioProfileTable = ({ bio }) => {
-  const {
-    _id,
-    name,
+    const [openModal, setOpenModal] = useState(false);
+    const {
+        _id,
+        name,
     gender,
     address,
     present_address,
@@ -27,12 +27,16 @@ const BioProfileTable = ({ bio }) => {
     status,
     isPremium,
   } = bio;
+
+  function onCloseModal() {
+      setOpenModal(false);
+  }
   return (
     <div>
       <Table striped>
         <Table.Head>
-          <Table.HeadCell>Product name</Table.HeadCell>
-          <Table.HeadCell>Color</Table.HeadCell>
+          <Table.HeadCell>Information</Table.HeadCell>
+          <Table.HeadCell>Details</Table.HeadCell>
         </Table.Head>
         <Table.Body className="divide-y">
           <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800">
@@ -120,9 +124,14 @@ const BioProfileTable = ({ bio }) => {
 
       {/* Request Form Start */}
       <div className="my-5 mx-2">
-        <Dropdown label="Contact" placement="right" className="w-[400px] px-10 py-10">
-        <RequestForm bio={bio}></RequestForm>
-        </Dropdown>
+
+        <Button onClick={() => setOpenModal(true)}>Contact Me</Button>
+        <Modal show={openModal} size="md" onClose={onCloseModal} popup>
+          <Modal.Header />
+          <Modal.Body>
+            <RequestForm bio={bio}></RequestForm>
+          </Modal.Body>
+        </Modal>
       </div>
       {/* Request Form End */}
     </div>

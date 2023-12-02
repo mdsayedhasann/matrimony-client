@@ -16,4 +16,5 @@ const useBioData = () => {
         [bioData, loading, refetch]
     )
 }
+
 export default useBioData;
