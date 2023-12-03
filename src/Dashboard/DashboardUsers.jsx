@@ -36,7 +36,16 @@ const DashboardUsers = () => {
 
   const handleAdmin = (item) => {
     console.log(item.name);
-    axiosSecure.patch(`/users/admin/${item._id}`);
+    axiosSecure.patch(`/users/admin/${item._id}`).then(() => {
+      refetch()
+      Swal.fire({
+        title: 'Success',
+        text: "Make Admin Seccess",
+        icon: "success",
+      });
+      
+    })
+    
   };
   // const allUsers = users.map(user => )
   return (

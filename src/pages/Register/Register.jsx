@@ -20,13 +20,14 @@ const Register = () => {
   const handleRegister = (data) => {
     console.log(data);
     createAccount(data.email, data.password)
-      .then((res) => {
+      .then((res1) => {
         // Update Name and Photo
         updateUser(data.name, data.photoURL).then((res) => {
           const userInfo = {
             name: data.name,
             email: data.email,
-            role: 'users'
+            role: 'users',
+            fbid: res1.user.uid
           }
           axiosSecure.post('/users', userInfo)
           .then(res => {

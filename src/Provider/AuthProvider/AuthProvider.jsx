@@ -11,6 +11,7 @@ const AuthProvider = ({children}) => {
     const createAccount = (email, password) => {
         setLoading(true)
         return createUserWithEmailAndPassword(auth, email, password)
+        
     }
     // Create New User End
 
@@ -48,6 +49,8 @@ const AuthProvider = ({children}) => {
         }
     }, [])
     // Unsubscribe End 
+
+    // Google Sign In 
 
     const authInfo = {
         user,
