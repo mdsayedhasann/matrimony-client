@@ -17,6 +17,7 @@ import BioProfile from '../pages/BioProfile/BioProfile';
 import useAxiosSecure from '../hooks/useAxiosSecure';
 import AboutUs from '../pages/AboutUs/AboutUs';
 import ReceiveRequest from '../Dashboard/ReceiveRequest/ReceiveRequest';
+import DashboardUsers from '../Dashboard/DashboardUsers';
 
   export const Router = createBrowserRouter([
     {
@@ -75,6 +76,10 @@ import ReceiveRequest from '../Dashboard/ReceiveRequest/ReceiveRequest';
         {
           path: 'receive_request',
           element: <ReceiveRequest></ReceiveRequest>
+        },
+        {
+          path: 'users',
+          element: <DashboardUsers></DashboardUsers>
         }
       ]
     }

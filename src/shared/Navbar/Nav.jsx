@@ -3,10 +3,13 @@ import { Avatar, Dropdown, Navbar } from "flowbite-react";
 import logo from '../../assets/images/logo.png'
 import { AuthContext } from "../../Provider/AuthProvider/AuthProvider";
 import Swal from 'sweetalert2'
+import useAxiosSecure from "../../hooks/useAxiosSecure";
+import useUsers from "../../hooks/useUsers";
 
 const Nav = () => {
   const {user, signoutUser} = useContext(AuthContext)
-
+  const [users] = useUsers()
+  const admin = users.filter(admin => admin.role ==='admin')
   const handleSignOut = () => {
     signoutUser()
     .then(() => {
@@ -50,8 +53,15 @@ const Nav = () => {
                 {user?.email}
               </span>
             </Dropdown.Header>
-            <Dropdown.Item href="/dashboard">Dashboard</Dropdown.Item>
-            <Dropdown.Item href="/dashboard/addbiodata">Add My Bio Data</Dropdown.Item>
+            {
+              admin && <>
+             
+               <Dropdown.Item href="/dashboard">Dashboard </Dropdown.Item>
+              <Dropdown.Item href="/dashboard/addbiodata">Add My Bio Data</Dropdown.Item>
+              </>
+            }
+            {/* <Dropdown.Item href="/dashboard">Dashboard</Dropdown.Item>
+            <Dropdown.Item href="/dashboard/addbiodata">Add My Bio Data</Dropdown.Item> */}
             <Dropdown.Item href="/dashboard/actionbiodata">My Received Bio Data</Dropdown.Item>
             <Dropdown.Divider />
             <Dropdown.Item onClick={handleSignOut}>Sign out</Dropdown.Item>

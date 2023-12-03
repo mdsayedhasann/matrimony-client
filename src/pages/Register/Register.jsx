@@ -4,9 +4,11 @@ import { useForm } from "react-hook-form";
 import { AuthContext } from "../../Provider/AuthProvider/AuthProvider";
 import Swal from "sweetalert2";
 import { Link, useNavigate } from "react-router-dom";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const Register = () => {
   const { user, createAccount, updateUser } = useContext(AuthContext);
+  const axiosSecure = useAxiosSecure()
   const navigate = useNavigate();
   const {
     register,
@@ -21,13 +23,23 @@ const Register = () => {
       .then((res) => {
         // Update Name and Photo
         updateUser(data.name, data.photoURL).then((res) => {
-          
-            Swal.fire({
-              icon: "success",
-              title: `Hi!, Warmly welcome to our Matrimoni`,
-              showConfirmButton: false,
-            });
-            navigate("/");
+          const userInfo = {
+            name: data.name,
+            email: data.email,
+            role: 'users'
+          }
+          axiosSecure.post('/users', userInfo)
+          .then(res => {
+            if(res.data.insertedId){
+              Swal.fire({
+                icon: "success",
+                title: `Hi!, Warmly welcome to our Matrimoni`,
+                showConfirmButton: false,
+              });
+              navigate("/");
+            }
+          })
+
             console.log(res);
           })
 
