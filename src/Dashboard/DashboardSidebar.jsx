@@ -76,12 +76,13 @@ const DashboardSidebar = () => {
                 <Sidebar.Item href="/dashboard/users" icon={HiUser}>
                   Users
                 </Sidebar.Item>
+
+                <Sidebar.Item href="/dashboard/contactRequest" icon={HiShoppingBag}>
+                  Contacts Request
+                </Sidebar.Item>
               </>
             )}
 
-            <Sidebar.Item href="#" icon={HiShoppingBag}>
-              Contacts Request
-            </Sidebar.Item>
             <Sidebar.Item href="/register" icon={HiTable}>
               <button onClick={handleSignOut}>Sign Out</button>
             </Sidebar.Item>

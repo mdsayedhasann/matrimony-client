@@ -7,3 +7,6 @@
 - When A Users Go Dashboard, he will see some options and a option called My Received Bio Data, in this page he can see how many requests he got
 - When a user go to BioData page from client side, they can see Filter option to find best mate, Filter by Gender and Age Available
 - After Visiting anyone Biodata page, users can see full details and if choose, he can request for this Biodata and whom he requested, he can get the request on his Dashboard and Approve or delete this request
+- All the items of Dashboard is visible for admin but some of those are restricted for normal users. Such as All Users, Contact Request menu and make someone as Admin is only visible for the Admin
+- Admin Can delete anyone's Bio from dashboard if Admin wants 
+- 

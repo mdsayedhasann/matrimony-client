@@ -4,6 +4,7 @@ import { Link, useNavigate  } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { AuthContext } from "../../Provider/AuthProvider/AuthProvider";
 import Swal from 'sweetalert2'
+import GoogleLogin from "../../shared/GoogleLogin/GoogleLogin";
 
 const Login = () => {
     const {user, singinUser } = useContext(AuthContext)
@@ -61,6 +62,7 @@ const Login = () => {
           </div>
           <Button type="submit">Submit</Button>
         </form>
+        <GoogleLogin></GoogleLogin>
         <div className="my-2">
           <p className="">
             Already have an account?
