@@ -46,7 +46,7 @@ import DashboardUsers from '../Dashboard/DashboardUsers';
         },
         {
           path: '/profile/:id',
-          element: <BioProfile></BioProfile>,
+          element: <PrivateRouter> <BioProfile></BioProfile></PrivateRouter> ,
           loader: ({params}) => fetch(` https://matrimony-server-three.vercel.app/bioData/${params.id}`)
         },
         {
@@ -59,27 +59,27 @@ import DashboardUsers from '../Dashboard/DashboardUsers';
     },
     {
       path: '/dashboard',
-      element: <Dashboard></Dashboard>,
+      element: <PrivateRouter><Dashboard></Dashboard></PrivateRouter>,
       children: [
         {
           path: '/dashboard',
-          element: <DashboardHome></DashboardHome>
+          element: <PrivateRouter> <DashboardHome></DashboardHome></PrivateRouter>
         },
         {
           path: 'addbiodata',
-          element: <AddBiodata></AddBiodata>
+          element: <PrivateRouter><AddBiodata></AddBiodata></PrivateRouter>
         },
         {
           path: 'actionbiodata',
-          element: <ActionBioData></ActionBioData>
+          element: <PrivateRouter><ActionBioData></ActionBioData></PrivateRouter>
         },
         {
           path: 'receive_request',
-          element: <ReceiveRequest></ReceiveRequest>
+          element: <PrivateRouter><ReceiveRequest></ReceiveRequest></PrivateRouter>
         },
         {
           path: 'users',
-          element: <DashboardUsers></DashboardUsers>
+          element: <PrivateRouter><DashboardUsers></DashboardUsers></PrivateRouter>
         }
       ]
     }

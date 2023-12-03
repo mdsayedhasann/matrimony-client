@@ -15,7 +15,7 @@ import useUsers from "../hooks/useUsers";
 
 const DashboardSidebar = () => {
   const [users] = useUsers();
-  const admin = users.filter((admin) => admin.role === "admin");
+  const admin = users.some((admin) => admin.role === "admin");
   return (
     <div className="h-screen">
       <Sidebar aria-label="Sidebar with logo branding example">
@@ -26,7 +26,7 @@ const DashboardSidebar = () => {
         </div>
         <Sidebar.Items>
           <Sidebar.ItemGroup>
-            {admin && (
+            {admin ? (
               <>
                 <Sidebar.Item href="/dashboard" icon={HiChartPie}>
                   Dashboard
@@ -35,7 +35,7 @@ const DashboardSidebar = () => {
                   Add Bio Data
                 </Sidebar.Item>
               </>
-            )}
+            ) : ''}
             {/* <Sidebar.Item href="/dashboard" icon={HiChartPie}>
               Dashboard
             </Sidebar.Item>

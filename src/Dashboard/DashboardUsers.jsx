@@ -7,7 +7,7 @@ import Swal from "sweetalert2";
 import useAxiosSecure from "../hooks/useAxiosSecure";
 
 const DashboardUsers = () => {
-  const [users, refetch, ] = useUsers();
+  const [users, refetch] = useUsers();
   const axiosSecure = useAxiosSecure();
 
   const handleDeleteUser = (item) => {
@@ -32,6 +32,11 @@ const DashboardUsers = () => {
         });
       }
     });
+  };
+
+  const handleAdmin = (item) => {
+    console.log(item.name);
+    axiosSecure.patch(`/users/admin/${item._id}`);
   };
   // const allUsers = users.map(user => )
   return (
@@ -65,6 +70,20 @@ const DashboardUsers = () => {
                   >
                     <FaTrash></FaTrash>
                   </button>
+                  {user.role === "admin" ? (
+                    <>
+                      <button disabled className="bg-green-500 p-2 mx-3 text-white rounded-lg">Already an Admin</button>
+                    </>
+                  ) : (
+                    <>
+                      <button
+                        onClick={() => handleAdmin(user)}
+                        className="bg-blue-500 p-2 mx-3 text-white rounded-lg"
+                      >
+                        Make Admin
+                      </button>
+                    </>
+                  )}
                 </Table.Cell>
               </Table.Row>
             </Table.Body>
