@@ -51,6 +51,9 @@ const DashboardSidebar = () => {
             <Sidebar.Item href="/dashboard" icon={HiChartPie}>
               Dashboard
             </Sidebar.Item>
+            <Sidebar.Item href="/" icon={HiChartPie}>
+              Home
+            </Sidebar.Item>
             <Sidebar.Item href="/dashboard/addbiodata" icon={HiViewBoards}>
               Add Bio Data
             </Sidebar.Item>
@@ -63,12 +66,6 @@ const DashboardSidebar = () => {
             ) : (
               ""
             )}
-            {/* <Sidebar.Item href="/dashboard" icon={HiChartPie}>
-              Dashboard
-            </Sidebar.Item>
-            <Sidebar.Item href="/dashboard/addbiodata" icon={HiViewBoards}>
-              Add Bio Data
-            </Sidebar.Item> */}
 
             <Sidebar.Item href="/dashboard/receive_request" icon={HiInbox}>
               My Received Request

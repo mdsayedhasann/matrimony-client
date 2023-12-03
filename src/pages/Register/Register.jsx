@@ -5,6 +5,7 @@ import { AuthContext } from "../../Provider/AuthProvider/AuthProvider";
 import Swal from "sweetalert2";
 import { Link, useNavigate } from "react-router-dom";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
+import GoogleLogin from "../../shared/GoogleLogin/GoogleLogin";
 
 const Register = () => {
   const { user, createAccount, updateUser } = useContext(AuthContext);
@@ -53,7 +54,8 @@ const Register = () => {
   return (
     <div>
       <div>
-        <form
+        <div>
+          <form
           onSubmit={handleSubmit(handleRegister)}
           className="flex max-w-md flex-col gap-4"
         >
@@ -114,6 +116,9 @@ const Register = () => {
           </div>
             <button className="bg-[#E00C44] py-2 text-white" type="submit">Register</button>
         </form>
+        <GoogleLogin></GoogleLogin>
+        </div>
+            
 
         <div className="my-2">
           <p className="">
